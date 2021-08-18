@@ -41,11 +41,12 @@ const showRecipe = async function () {
     }
 
     console.log('With new names', recipe);
+    console.log(recipe.image);
 
     //2. RENDERING RECIPE
     const markup = `
     <figure class="recipe__fig">
-          <img src="${recipe.image}" alt="${recipe.title}" class="recipe__img" />
+          <img crossOrigin = "anonymous " src="${recipe.image}" alt="${recipe.title}" class="recipe__img" />
           <h1 class="recipe__title">
             <span>${recipe.title}</span>
           </h1>
