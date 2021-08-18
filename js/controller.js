@@ -1,3 +1,5 @@
+const { error } = require("console");
+
 const recipeContainer = document.querySelector('.recipe');
 
 const timeout = function (s) {
@@ -18,6 +20,8 @@ const showRecepie = async function () {
     const response = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886`);
     const data = await response.json();
     console.log(response, data);
+
+    if (!response.ok) throw new Error(`${data.message} ${response.status}`)
 
   } catch (err) {
     console.log(err);
