@@ -21,7 +21,24 @@ const showRecepie = async function () {
     const data = await response.json();
     console.log(response, data);
 
-    if (!response.ok) throw new Error(`${data.message} ${response.status}`)
+    // if there is some error with the link in fetch call
+    if (!response.ok) throw new Error(`${data.message} ${response.status}`);
+    // to reformat the naming of elements, for better variable names, in the data
+    // since in the data we have an element named data, so data.data
+    let { recipe } = data.data;
+    console.log('with original names', recipe);// or recipe = data.data.recipe
+    recipe = {
+      id: recipe.id,
+      publisher: recipe.publisher,
+      sourceUrl: recipe.source_url,
+      image: recipe.image_url,
+      servings: recipe.servings,
+      cookingTime: recipe.cooking_time,
+      ingredients: recipe.ingredients
+    }
+
+    console.log('With new names', recipe);
+
 
   } catch (err) {
     console.log(err);
